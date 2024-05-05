@@ -9,9 +9,10 @@ export const authApi = axios.create({
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
 
+// GET http://localhost:3001/
 export const getRoot = async () => {
   try {
-    const response = await authApi.get('/');  // http://localhost:3001/
+    const response = await authApi.get('/');  
     console.log(response);
     return response.data;
   } catch (error) {
@@ -19,3 +20,15 @@ export const getRoot = async () => {
     return null;
   }
 };
+
+// GET http://localhost:3001/convert?mile=100
+export const getKm = async (mile) => {
+  try {
+    const response = await authApi.get(`/convert?mile=${mile}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}

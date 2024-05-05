@@ -9,16 +9,17 @@ function App() {
   const [km, setKm] = useState(0.0);
 
   const clickRoot = () => {
-    console.log('getRoot');
+    console.log('== getRoot in clickRook');
 
     getRoot().then((data) => {
+      console.log('== then in clickRook');
       console.log(data);
       setMsg(JSON.stringify(data));
     });
   }
   const cvtMile = () => {
     console.log(`mile = ${mile}`);
-    setKm(mile * 1.60934);
+    setKm(mile * 1.60934); // local calculation --> request to server
   }
 
   return (
