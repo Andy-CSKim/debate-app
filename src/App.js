@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { getRoot } from './fetch';
+import { getRoot, getKm } from './fetch';
 
 function App() {
   const [msg, setMsg] = useState(''); // [Read, Write]
@@ -23,7 +23,9 @@ function App() {
   }
   const cvtMile = () => {
     console.log(`mile = ${mile}`);
-    setKm(mile * 1.60934); // local calculation --> request to server
+
+    // local calculation --> request to server by using getKm()
+    setKm(mile * 1.60934); 
   }
 
   return (
