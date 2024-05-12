@@ -4,18 +4,22 @@ import { useEffect, useState } from 'react';
 import { getRoot } from './fetch';
 
 function App() {
-  const [msg, setMsg] = useState('');
+  const [msg, setMsg] = useState(''); // [Read, Write]
   const [mile, setMile] = useState(0.0);
   const [km, setKm] = useState(0.0);
 
-  const clickRoot = () => {
-    console.log('== getRoot in clickRook');
+  console.log(`App, msg=${msg}`);
 
-    getRoot().then((data) => {
-      console.log('== then in clickRook');
-      console.log(data);
-      setMsg(JSON.stringify(data));
+  const clickRoot = () => {
+    console.log('(1) getRoot in clickRook');
+
+    getRoot().then((data) => {   // .then() is required to call async function
+      console.log('(2) then in clickRook');
+      console.log(data); // (3)
+      setMsg(JSON.stringify(data));  // OK
+      //msg = JSON.stringify(data);  // error becuase we can't change state directly
     });
+    console.log('(4) end of clickRook');
   }
   const cvtMile = () => {
     console.log(`mile = ${mile}`);
@@ -26,6 +30,7 @@ function App() {
     <div className="App">
       <button onClick={clickRoot}>localhost:3001/</button><br />
       <p>{msg}</p><br />
+
       <input type="text" value={mile} onChange={(e) => setMile(e.target.value)} />
       <button onClick={cvtMile}>Mile to Km</button><br />
       {/* interger to string */}

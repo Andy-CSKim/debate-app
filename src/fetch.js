@@ -12,7 +12,7 @@ authApi.defaults.headers.common['Content-Type'] = 'application/json';
 // GET http://localhost:3001/
 export const getRoot = async () => {
   try {
-    const response = await authApi.get('/');  
+    const response = await authApi.get('/');  // get, post, put, delete
     console.log(response);
     return response.data;
   } catch (error) {
