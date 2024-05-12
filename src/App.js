@@ -8,10 +8,17 @@ function App() {
   const [mile, setMile] = useState(0.0);
   const [km, setKm] = useState(0.0);
 
-  console.log(`App, msg=${msg}`);
+  // console.log(`App, msg=${msg}`);
+
+  const cb = (data) => {  // function cb(data) { ... }
+    console.log(data); // (3)
+  }
 
   const clickRoot = () => {
     console.log('(1) getRoot in clickRook');
+
+    //getRoot().then( cb ); 
+    //getRoot().then( (data) => { console.log(data);} );
 
     getRoot().then((data) => {   // .then() is required to call async function
       console.log('(2) then in clickRook');
