@@ -25,7 +25,9 @@ function App() {
     console.log(`mile = ${mile}`);
 
     // local calculation --> request to server by using getKm()
-    setKm(mile * 1.60934); 
+    //getKm(mile).then
+    //setKm(mile * 1.60934); 
+    // set(data)
   }
 
   return (
