@@ -8,6 +8,9 @@ function App() {
   const [mile, setMile] = useState(0.0);
   const [km, setKm] = useState(0.0);
 
+  const [name, setName] = useState(''); // [Read, Write]
+  const [resp, setResp] = useState(''); // [Read, Write
+
   // console.log(`App, msg=${msg}`);
 
   const cb = (data) => {  // function cb(data) { ... }
@@ -32,10 +35,26 @@ function App() {
     console.log(`mile = ${mile}`);
 
     // local calculation --> request to server by using getKm()
-    //getKm(mile).then
-    //setKm(mile * 1.60934); 
-    // set(data)
+    getKm(mile).then((data) => {
+      console.log(data);
+      setKm(data.km);
+    });
   }
+  const postItem = () => {
+    console.log(`name = ${name}`);
+
+    const obj = { 'name': name,
+                  'price': 1000};
+
+    // send Item with name to server
+    postItem(obj).then((data) => {
+      console.log(data);
+
+      setResp(JSON.stringify(data));
+    });
+
+  }
+    
 
   return (
     <div className="App">
@@ -46,6 +65,11 @@ function App() {
       <button onClick={cvtMile}>Mile to Km</button><br />
       {/* interger to string */}
       <p>{km.toString()}</p><br />
+
+      <input type="text" value={mile} onChange={(e) => setMile(e.target.value)} />
+      <button onClick={postItem}>Post Item</button><br />
+      <p> {resp}</p>
+
     </div>
   );
 }

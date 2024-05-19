@@ -32,3 +32,8 @@ export const getKm = async (mile) => {
     return null;
   }
 }
+
+// POST http://localhost:3001/item
+export const postItem = async (obj) => {
+
+}
