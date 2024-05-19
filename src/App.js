@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { getRoot, getKm } from './fetch';
+import { getRoot, getKm, postItem } from './fetch';
 
 function App() {
   const [msg, setMsg] = useState(''); // [Read, Write]
@@ -40,7 +40,7 @@ function App() {
       setKm(data.km);
     });
   }
-  const postItem = () => {
+  const sendItem = () => {
     console.log(`name = ${name}`);
 
     const obj = { 'name': name,
@@ -66,8 +66,8 @@ function App() {
       {/* interger to string */}
       <p>{km.toString()}</p><br />
 
-      <input type="text" value={mile} onChange={(e) => setMile(e.target.value)} />
-      <button onClick={postItem}>Post Item</button><br />
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      <button onClick={sendItem}>Post Item</button><br />
       <p> {resp}</p>
 
     </div>

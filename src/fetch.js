@@ -36,4 +36,13 @@ export const getKm = async (mile) => {
 // POST http://localhost:3001/item
 export const postItem = async (obj) => {
 
+  try {
+    const response = await authApi.post('/items', obj);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+
 }
