@@ -52,6 +52,8 @@ function App() {
   // username: str
   // full_name: str | None = None
 
+  // @app.post("/items")
+  // async def create_item(item: Item):
   const sendPrice = () => {
     console.log(`price = ${price}`);
 
@@ -67,6 +69,8 @@ function App() {
 
   }
 
+// @app.put("/items")
+// async def update_item(item: Item, user: User, q:str|None = None):  
   const sendNameAndPrice = () => {
     console.log(`name = ${name}, price = ${price}`);
 
