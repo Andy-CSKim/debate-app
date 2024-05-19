@@ -33,7 +33,7 @@ export const getKm = async (mile) => {
   }
 }
 
-// POST http://localhost:3001/item
+// POST http://localhost:3001/items
 export const postItem = async (obj) => {
 
   try {
@@ -45,4 +45,10 @@ export const postItem = async (obj) => {
     return null;
   }
 
+}
+
+// PUT http://localhost:3001/items
+export const putItem = async (obj) => {
+
+  
 }

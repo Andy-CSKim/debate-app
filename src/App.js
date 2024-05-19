@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { getRoot, getKm, postItem } from './fetch';
+import { getRoot, getKm, postItem, putItem } from './fetch';
 
 function App() {
   const [msg, setMsg] = useState(''); // [Read, Write]
   const [mile, setMile] = useState(0.0);
   const [km, setKm] = useState(0.0);
 
+  const [price, setPrice] = useState(0.0); // [Read, Write]
   const [name, setName] = useState(''); // [Read, Write]
   const [resp, setResp] = useState(''); // [Read, Write
 
@@ -40,14 +41,40 @@ function App() {
       setKm(data.km);
     });
   }
-  const sendItem = () => {
-    console.log(`name = ${name}`);
 
-    const obj = { 'name': name,
-                  'price': 1000};
+  // class Item(BaseModel):
+  //   name: str
+  //   description: str | None = None
+  //   price: float
+  //   tax: float | None = None
+
+  // class User(BaseModel):
+  // username: str
+  // full_name: str | None = None
+
+  const sendPrice = () => {
+    console.log(`price = ${price}`);
+
+    const item = { 'name': 'unknown',
+                  'price': price};
 
     // send Item with name to server
-    postItem(obj).then((data) => {
+    postItem(item).then((data) => {
+      console.log(data);
+
+      setResp(JSON.stringify(data));
+    });
+
+  }
+
+  const sendNameAndPrice = () => {
+    console.log(`name = ${name}, price = ${price}`);
+
+    const obj = { 'item':{'name': 'unknown', 'price': price},
+                  'user':{'username': name}};
+
+    // send Item with name to server
+    putItem(obj).then((data) => {
       console.log(data);
 
       setResp(JSON.stringify(data));
@@ -66,8 +93,10 @@ function App() {
       {/* interger to string */}
       <p>{km.toString()}</p><br />
 
+      <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+      <button onClick={sendPrice}>Send Price</button><br />
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      <button onClick={sendItem}>Post Item</button><br />
+      <button onClick={sendNameAndPrice}>Send Name & Price</button><br />
       <p> {resp}</p>
 
     </div>
